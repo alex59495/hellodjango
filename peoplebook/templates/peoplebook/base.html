@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}People Book{% endblock title %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen">
+</head>
+<body>
+  {% block content %}
+    Vous êtes sur la base de PeopleBook
+  {% endblock content %}
+</body>
+</html>

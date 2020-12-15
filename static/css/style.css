@@ -1,0 +1,14 @@
+.picture h2 {
+  font-size: 24px;
+  color: green;
+}
+
+.picture img {
+  width: 300px;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+}
+

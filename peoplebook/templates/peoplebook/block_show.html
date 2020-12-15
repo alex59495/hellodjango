@@ -1,0 +1,9 @@
+{% load static %}
+
+<div class="user-detail">
+  <ul>
+    <li>Name : {{ user.name }}</li>
+    <li>Job : {{ user.job }}</li>
+    <img src="{% static user.picture %}" alt="" class="center">
+  </ul>
+</div>

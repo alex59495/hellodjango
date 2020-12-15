@@ -1,0 +1,10 @@
+{% extends 'peoplebook/base.html' %}
+
+{% block title %}
+  {{ block.super }} - {{ user.name|title }}
+{% endblock title %}
+
+{% block content %}
+  <h1>People Book details {{ user.name|title }}</h1>
+  {% include 'peoplebook/block_show.html' %}
+{% endblock content %}

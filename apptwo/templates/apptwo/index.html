@@ -1,0 +1,15 @@
+{% extends "apptwo/base.html" %}
+{% load static %}
+
+{% block title %}Pictures{% endblock %}
+{% block content %}
+  {% for picture in pictures %}
+    {% with 'apptwo/'|add:picture.filename as filepath %}
+      <div class="picture">
+        <h2>{{ picture.name }}</h2>
+        <img src="{% static filepath %}" alt="{{ picture.name }}">
+      </div>
+    {% endwith %}
+  {% endfor %}
+{% endblock content %}
+
