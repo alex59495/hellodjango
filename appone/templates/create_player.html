@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Player</title>
+</head>
+<body>
+  <h2>Region</h2>
+  {{ region.name }}
+  <h2>Registration</h2>
+  <form action="{% url "create_player" region.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crée ton personnage"
+      {% if errors %}disabled {% endif %}>
+  </form>
+</body>
+</html>

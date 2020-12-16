@@ -22,12 +22,13 @@ from appone import views as views1
 
 urlpatterns = [
   path('devices/', include('mydevices.urls')),
-  path('register/', views1.register, name='register'),
-  path('thanks/<str:name>', views1.thanks, name="thanks"),
+#   path('register/', views1.register, name='register'),
+#   path('thanks/<str:name>', views1.thanks, name="thanks"),
+#   path('hello/', views1.hello),
+#   path('songs/', views1.songs_list),
+#   path('songs/add/<str:song_name>/<int:duration>', views1.add_song),
+  path('create_player/<int:region_id>', views1.create_player, name='create_player'),
   path('admin/', admin_site.urls),
-  path('hello/', views1.hello),
-  path('songs/', views1.songs_list),
-  path('songs/add/<str:song_name>/<int:duration>', views1.add_song),
   path('apptwo/', include('apptwo.urls')),
   path('users/', include('peoplebook.urls'))
 ]

@@ -1,44 +1,39 @@
 from django.db import models
 
-# Create your models here.
-class Album(models.Model):
-  name = models.CharField(max_length=255)
-  artist_name = models.CharField(max_length=255)
-  release_date = models.DateField(auto_now_add=True)
 
-  def __str__(self):
-    return '{} - {}'.format(self.name, self.artist_name)
+class Region(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return '{} {}'.format(self.pk, self.name)
 
 
-class Song(models.Model):
-  name = models.CharField(max_length=255)
-  album = models.ForeignKey('Album', on_delete=models.CASCADE)
-  duration = models.IntegerField(default=0)
-  lyrics = models.TextField(blank=True)
+class Player(models.Model):
+    CHARACTER_HUMAN = 'human'
+    CHARACTER_HOBBIT = 'hobbit'
+    CHARACTER_ELF = 'elf'
+    CHARACTER_ORC = 'orc'
 
-  def __str__(self):
-    return '{} - {}'.format(self.name, self.duration)
+    CHARACTER_CHOICES = (
+        (CHARACTER_HUMAN, 'Human'),
+        (CHARACTER_HOBBIT, 'Hobbit'),
+        (CHARACTER_ELF, 'Elf'),
+        (CHARACTER_ORC, 'Orc'),
+    )
 
+    name = models.CharField(max_length=50, help_text='Your in-game name')
+    region = models.ForeignKey('Region', on_delete=models.CASCADE)
+    email = models.EmailField(max_length=100)
+    birth_date = models.DateField()
+    character_class = models.CharField(max_length=20,
+                                       choices=CHARACTER_CHOICES)
 
-class Company(models.Model):
-  name = models.CharField(max_length=255)
-
-class Department(models.Model):
-  name = models.CharField(max_length=255)
-
-class Employee(models.Model):
-  company = models.ForeignKey('Company', on_delete=models.CASCADE)
-  department = models.ForeignKey('Department', on_delete=models.CASCADE)
-  name = models.CharField(max_length=255)
-  age = models.IntegerField()
-  salary = models.DecimalField(max_digits=6, decimal_places=2)
-
-  def __str__(self):
-    return '{} - {} - {} - {} - {}'.format(
-      self.name, 
-      self.company,
-      self.department,
-      self.age,
-      self.salary
-      )
-
+    def __str__(self):
+        return '{id} {name} (region={region}), {email}, {birth_date}, {character}'.format(
+            id=self.pk,
+            name=self.name,
+            region=self.region.name,
+            email=self.email,
+            birth_date=self.birth_date,
+            character=self.character_class,
+        )
